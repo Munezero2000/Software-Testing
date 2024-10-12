@@ -26,5 +26,5 @@ public class AcademicUnit {
 
     @ManyToOne
     @JoinColumn(name = "parent_id")
-    private AcademicUnit parentId;
+    private AcademicUnit parentId; // This is the parent academic unit, self reference
 }

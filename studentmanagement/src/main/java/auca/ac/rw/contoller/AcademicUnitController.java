@@ -2,22 +2,21 @@ package auca.ac.rw.contoller;
 
 import org.hibernate.Session;
 
-import auca.ac.rw.model.Teacher;
+import auca.ac.rw.model.AcademicUnit;
 import auca.ac.rw.util.HibernateUtil;
 
-public class TeacherController {
-    public String addTeacher(Teacher teacher) {
+public class AcademicUnitController {
+    public AcademicUnit addAcademicUnit(AcademicUnit academicUnit) {
         try {
             Session session = HibernateUtil.getSession().openSession();
             session.beginTransaction();
-            session.persist(teacher);
+            session.persist(academicUnit);
             session.getTransaction().commit();
             session.close();
-            return "Teacher saved successfully";
+            return academicUnit;
         } catch (Exception ex) {
             ex.printStackTrace();
-            return ex.getMessage();
+            return null;
         }
-
     }
 }

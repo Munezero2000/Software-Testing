@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -22,7 +23,7 @@ public class StudentRegistration {
 
     @ManyToMany
     @JoinTable(name = "student_course", joinColumns = @JoinColumn(name = "student_registration_id"), inverseJoinColumns = @JoinColumn(name = "course_id"))
-    private List<Course> courses;
+    private Set<Course> courses;
 
     @ManyToOne
     @JoinColumn(name = "semester_id", nullable = false)
