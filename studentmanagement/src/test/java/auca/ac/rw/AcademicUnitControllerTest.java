@@ -13,7 +13,7 @@ public class AcademicUnitControllerTest {
 
     @Test
     @DisplayName("Test adding an Academic Unit")
-    public void testAddAcademicUnit() {
+    public AcademicUnit testAddAcademicUnit() {
         AcademicUnitController academicUnitController = new AcademicUnitController();
         AcademicUnit academicUnit = new AcademicUnit();
         academicUnit.setAcademicUnitName("Faculty of Information Technology");
@@ -37,6 +37,9 @@ public class AcademicUnitControllerTest {
             // Testing the Department registration
             assertNotNull(returnedDepartment);
             assertEquals(returnedDepartment.getAcademicUnitName(), department.getAcademicUnitName());
+            return returnedDepartment;
+        } else {
+            return null;
         }
     }
 }

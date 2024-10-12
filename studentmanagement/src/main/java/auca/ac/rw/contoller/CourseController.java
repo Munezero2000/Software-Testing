@@ -6,15 +6,15 @@ import auca.ac.rw.model.Course;
 import auca.ac.rw.util.HibernateUtil;
 
 public class CourseController {
-    public String addCourse(Course course) {
+    public Course addCourse(Course course) {
         try (Session session = HibernateUtil.getSession().openSession()) {
             session.beginTransaction();
             session.persist(course);
             session.getTransaction().commit();
-            return "Course saved successfully";
+            return course;
         } catch (Exception e) {
             e.printStackTrace();
-            return "Error adding course";
+            return null;
         }
     }
 }

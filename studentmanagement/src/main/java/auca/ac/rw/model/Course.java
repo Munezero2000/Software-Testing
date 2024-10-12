@@ -8,6 +8,7 @@ import lombok.*;
 @Entity
 @Table(name = "course")
 @Data
+@RequiredArgsConstructor
 @NoArgsConstructor
 @AllArgsConstructor
 public class Course {
@@ -17,19 +18,24 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
+    @NonNull
     @Column(name = "course_code")
     private String courseCode;
 
+    @NonNull
     @Column(name = "course_name")
     private String courseName;
 
+    @NonNull
     @Column(name = "course_credit_hours")
     private Integer courseCreditHours;
 
+    @NonNull
     @ManyToOne
     @JoinColumn(name = "semester_id")
     private Semester semester;
 
+    @NonNull
     @ManyToOne
     @JoinColumn(name = "department_id")
     private AcademicUnit department;
@@ -39,5 +45,4 @@ public class Course {
 
     @ManyToMany(mappedBy = "courses")
     private List<Teacher> teachers;
-
 }
