@@ -12,7 +12,7 @@ import auca.ac.rw.model.EAcademicUnit;
 public class AcademicUnitControllerTest {
 
     @Test
-    @DisplayName("Test adding an Faculty")
+    @DisplayName("Test adding an Academic Unit")
     public void testAddAcademicUnit() {
         AcademicUnitController academicUnitController = new AcademicUnitController();
         AcademicUnit academicUnit = new AcademicUnit();

@@ -1,6 +1,8 @@
 package auca.ac.rw.model;
 
 import jakarta.persistence.*;
+
+import java.time.LocalDate;
 import java.util.UUID;
 import lombok.*;
 
@@ -18,9 +20,9 @@ public class Semester {
     private String semesterName;
 
     @Column(nullable = false, name = "start_date")
-    private String startData;
+    private LocalDate startData;
 
     @Column(nullable = false, name = "end_date")
-    private String end_date;
+    private LocalDate end_date;
 
 }
