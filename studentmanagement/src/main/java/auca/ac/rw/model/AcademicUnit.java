@@ -1,15 +1,21 @@
 package auca.ac.rw.model;
 
+import java.util.UUID;
+
 import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @Table(name = "academic_unit")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class AcademicUnit {
 
     @Id
     @Column(name = "academic_unit_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long academicUnitId;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID academicUnitId;
 
     @Column(name = "academic_unit_name")
     private String academicUnitName;

@@ -15,7 +15,8 @@ public class Student {
 
     @Id
     @Column(name = "student_id")
-    private UUID studentId = UUID.randomUUID();
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID studentId;
 
     @Column(name = "first_name")
     private String firstName;

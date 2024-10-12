@@ -2,12 +2,16 @@ package auca.ac.rw.model;
 
 import jakarta.persistence.*;
 import java.util.UUID;
+import lombok.*;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Semester {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @Column(nullable = false, name = "semester_name")

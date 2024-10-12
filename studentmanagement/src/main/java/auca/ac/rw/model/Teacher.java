@@ -1,5 +1,6 @@
 package auca.ac.rw.model;
 
+import java.util.List;
 import java.util.UUID;
 
 import jakarta.persistence.*;
@@ -27,8 +28,7 @@ public class Teacher {
     @Enumerated(EnumType.STRING)
     private EQualification qualification;
 
-    @OneToOne
-    @JoinColumn(name = "course_id")
-    private Course course;
-
+    @ManyToMany
+    @JoinTable(name = "teacher_course", joinColumns = @JoinColumn(name = "teacher_id"), inverseJoinColumns = @JoinColumn(name = "course_id"))
+    private List<Course> courses;
 }

@@ -14,7 +14,7 @@ public class StudentController {
         student.setDateOfBirth(LocalDate.of(1990, 1, 1));
         Session session = HibernateUtil.getSession().openSession();
         session.beginTransaction();
-        session.save(student);
+        session.persist(student);
         session.getTransaction().commit();
         session.close();
         return "Student added successfully";

@@ -1,11 +1,14 @@
 package auca.ac.rw.model;
 
-import java.util.UUID;
+import java.util.*;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @Table(name = "course")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Course {
 
     @Id
@@ -19,18 +22,18 @@ public class Course {
     @Column(name = "course_name")
     private String courseName;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "semester_id")
     private Semester semester;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "department_id")
     private AcademicUnit department;
 
     @OneToOne(mappedBy = "course")
     private CourseDefinition courseDefinition;
 
-    @OneToOne(mappedBy = "course")
-    private Teacher teacher;
+    @ManyToMany(mappedBy = "courses")
+    private List<Teacher> teachers;
 
 }

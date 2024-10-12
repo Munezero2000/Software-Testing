@@ -10,7 +10,6 @@ import org.hibernate.cfg.Environment;
 import auca.ac.rw.model.AcademicUnit;
 import auca.ac.rw.model.Course;
 import auca.ac.rw.model.CourseDefinition;
-import auca.ac.rw.model.Department;
 import auca.ac.rw.model.Semester;
 import auca.ac.rw.model.Student;
 import auca.ac.rw.model.StudentRegistration;
@@ -37,7 +36,6 @@ public class HibernateUtil {
             configuration.addAnnotatedClass(Course.class);
             configuration.addAnnotatedClass(StudentRegistration.class);
             configuration.addAnnotatedClass(Student.class);
-            configuration.addAnnotatedClass(Department.class);
             configuration.addAnnotatedClass(Semester.class);
             configuration.addAnnotatedClass(AcademicUnit.class);
             configuration.addAnnotatedClass(CourseDefinition.class);
