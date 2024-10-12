@@ -2,19 +2,19 @@ package auca.ac.rw.contoller;
 
 import org.hibernate.Session;
 
-import auca.ac.rw.model.Course;
+import auca.ac.rw.model.CourseDefinition;
 import auca.ac.rw.util.HibernateUtil;
 
-public class CourseController {
-    public String addCourse(Course course) {
+public class CourseDefinitionController {
+    public CourseDefinition addCourseDefinition(CourseDefinition courseDefinition) {
         try (Session session = HibernateUtil.getSession().openSession()) {
             session.beginTransaction();
-            session.persist(course);
+            session.persist(courseDefinition);
             session.getTransaction().commit();
-            return "Course saved successfully";
+            return courseDefinition;
         } catch (Exception e) {
             e.printStackTrace();
-            return "Error adding course";
+            return null;
         }
     }
 }

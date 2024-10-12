@@ -7,6 +7,7 @@ import lombok.*;
 
 @Entity
 @Table(name = "course")
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Course {
@@ -21,6 +22,9 @@ public class Course {
 
     @Column(name = "course_name")
     private String courseName;
+
+    @Column(name = "course_credit_hours")
+    private Integer courseCreditHours;
 
     @ManyToOne
     @JoinColumn(name = "semester_id")
