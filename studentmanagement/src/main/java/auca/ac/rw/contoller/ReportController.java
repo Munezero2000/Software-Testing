@@ -9,7 +9,8 @@ import auca.ac.rw.model.StudentRegistration;
 public class ReportController {
     public List<StudentRegistration> getSemesterStudent(UUID semesterId) {
         System.out.println("Getting semester student report");
-        Semester semester = new Semester();
+        SemesterController sem = new SemesterController();
+        Semester semester = sem.getSemesterById(semesterId);
         semester.getStudentRegistrations();
         System.out.println(semester.getStudentRegistrations());
         for (StudentRegistration registration : semester.getStudentRegistrations()) {

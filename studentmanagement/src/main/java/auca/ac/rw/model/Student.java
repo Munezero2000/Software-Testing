@@ -29,4 +29,13 @@ public class Student {
 
     @OneToMany(mappedBy = "student")
     private List<StudentRegistration> studentRegistrations;
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + studentId +
+                ", name='" + firstName + " " + lastName + '\'' +
+                // Avoid including student registrations directly
+                '}';
+    }
 }

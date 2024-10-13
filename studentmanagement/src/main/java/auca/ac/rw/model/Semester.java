@@ -28,9 +28,9 @@ public class Semester {
     @Column(nullable = false, name = "end_date")
     private LocalDate endDate;
 
-    @OneToMany(mappedBy = "semester", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "semester", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Course> courses;
 
-    @OneToMany(mappedBy = "semester", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "semester", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<StudentRegistration> studentRegistrations;
 }

@@ -43,6 +43,6 @@ public class Course {
     @OneToOne(mappedBy = "course")
     private CourseDefinition courseDefinition;
 
-    @ManyToMany(mappedBy = "courses")
+    @ManyToMany(mappedBy = "courses", fetch = FetchType.EAGER)
     private List<Teacher> teachers;
 }

@@ -1,5 +1,6 @@
 package auca.ac.rw.model;
 
+import java.util.List;
 import java.util.UUID;
 
 import jakarta.persistence.*;
@@ -27,4 +28,7 @@ public class AcademicUnit {
     @ManyToOne
     @JoinColumn(name = "parent_id")
     private AcademicUnit parentId; // This is the parent academic unit, self reference
+
+    @OneToMany(mappedBy = "department", fetch = FetchType.EAGER)
+    private List<StudentRegistration> studentRegistrations;
 }

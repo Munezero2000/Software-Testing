@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.UUID;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -94,9 +96,25 @@ public class StudentRegistrationControllerTest {
             studentRegistration.setSemester(semester);
             studentRegistration.setRegistrationDate(LocalDate.now());
             studentRegistration.setStudent(StudentControllerTest.testAddStudent());
+            studentRegistration.setRegistrationNumber(1);
+            studentRegistration.setRegistrationStatus("Pending");
 
             // Register the student
             studentRegistrationController.registerStudent(studentRegistration);
         }
     }
+
+    // @Test
+    // @DisplayName("Test getting student registrations by semester id")
+    // public void testGetStudentRegistrationsBySemesterId() {
+    // StudentRegistrationController studentRegistrationController = new
+    // StudentRegistrationController();
+    // List<StudentRegistration> studentRegistrations =
+    // studentRegistrationController
+    // .getStudentRegistrationsBySemesterId(UUID.fromString("24964a65-f492-4b93-98fb-4d41f23a7db0"));
+    // assertNotNull(studentRegistrations);
+    // System.out.println(studentRegistrations);
+    // assertEquals(1, studentRegistrations.size());
+
+    // }
 }
