@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import auca.ac.rw.contoller.AcademicUnitController;
 import auca.ac.rw.contoller.CourseController;
 import auca.ac.rw.contoller.CourseDefinitionController;
+import auca.ac.rw.contoller.SemesterController;
 import auca.ac.rw.model.AcademicUnit;
 import auca.ac.rw.model.Course;
 import auca.ac.rw.model.CourseDefinition;
@@ -21,41 +22,48 @@ public class CourseControllerTest {
     @Test
     @DisplayName("Test adding a course")
     public void testAddCourse() {
-        Semester semester = new Semester("Spring", LocalDate.of(2024, 1, 1), LocalDate.of(2024, 6, 30));
-        AcademicUnitController academicUnitController = new AcademicUnitController();
+        AcademicUnit department = new AcademicUnit();
         AcademicUnit academicUnit = new AcademicUnit();
+        SemesterController semesterController = new SemesterController();
+        CourseController courseController = new CourseController();
+        CourseDefinitionController courseDefinitionController = new CourseDefinitionController();
+        CourseDefinition courseDefinition = new CourseDefinition();
+
+        // 1. Testing Semester Registration
+        Semester semester = new Semester("Spring", LocalDate.of(2024, 1, 1), LocalDate.of(2024, 6, 30));
+        Semester returnedSemester = semesterController.addSemester(semester);
+        assertNotNull(semester);
+        assertEquals(semester.getSemesterName(), returnedSemester.getSemesterName());
+
+        // 2. Testing the Faculty registration
+        AcademicUnitController academicUnitController = new AcademicUnitController();
         academicUnit.setAcademicUnitName("Faculty of Information Technology");
         academicUnit.setAcademicUnitType(EAcademicUnit.FACULTY);
 
-        AcademicUnit result = academicUnitController.addAcademicUnit(academicUnit);
-        System.out.println(result);
+        AcademicUnit faculty = academicUnitController.addAcademicUnit(academicUnit);
+        assertNotNull(faculty);
+        assertEquals(faculty.getAcademicUnitName(), academicUnit.getAcademicUnitName());
 
-        // Testing the Faculty registration
-        assertNotNull(result);
-        assertEquals(result.getAcademicUnitName(), academicUnit.getAcademicUnitName());
+        // Ensuring Faculty is saved before saving parent
+        if (faculty != null && faculty.getAcademicUnitType() == EAcademicUnit.FACULTY) {
 
-        if (result != null && result.getAcademicUnitType() == EAcademicUnit.FACULTY) {
-            AcademicUnit department = new AcademicUnit();
+            // 3. Saving Department
             department.setAcademicUnitName("Software Engineering");
             department.setAcademicUnitType(EAcademicUnit.DEPARTMENT);
-            department.setParentId(result);
+            department.setParentId(faculty);
             AcademicUnit returnedDepartment = academicUnitController.addAcademicUnit(department);
-            Course course = new Course("CS101", "Introduction to Computer Science", 3, semester, returnedDepartment);
-            course.setSemester(semester);
-            CourseController courseController = new CourseController();
-            Course result2 = courseController.addCourse(course);
-            assertNotNull(result);
-            assertEquals("Course saved successfully", result);
 
-            CourseDefinitionController courseDefinitionController = new CourseDefinitionController();
-            CourseDefinition courseDefinition = new CourseDefinition();
+            Course course = new Course("CS101", "Introduction to Computer Science", 3, semester, returnedDepartment);
+            Course returnedCourse = courseController.addCourse(course);
+            assertNotNull(returnedCourse);
+
+            // 4. Saving course Definition
             courseDefinition.setDescription("Introduction to Computer Science");
             courseDefinition.setCourse(course);
 
             CourseDefinition result3 = courseDefinitionController.addCourseDefinition(courseDefinition);
             assertNotNull(result3);
-            assertEquals("Course definition saved successfully", result3);
-            assertEquals(result3.getCourse(), course);
+            assertEquals(result3.getCourse(), returnedCourse);
         }
     }
 }

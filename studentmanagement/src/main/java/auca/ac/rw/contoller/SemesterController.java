@@ -29,6 +29,7 @@ public class SemesterController {
     public Semester getSemesterById(UUID semesterId) {
         try (Session session = HibernateUtil.getSession().openSession()) {
             Semester semester = session.get(Semester.class, semesterId);
+            semester.getStudentRegistrations();
             return semester;
         } catch (Exception e) {
             e.printStackTrace();

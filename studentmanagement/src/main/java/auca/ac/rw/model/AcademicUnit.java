@@ -26,9 +26,10 @@ public class AcademicUnit {
     private EAcademicUnit academicUnitType;
 
     @ManyToOne
-    @JoinColumn(name = "parent_id")
+    @JoinColumn(name = "parent_id", nullable = true)
     private AcademicUnit parentId; // This is the parent academic unit, self reference
 
     @OneToMany(mappedBy = "department", fetch = FetchType.EAGER)
     private List<StudentRegistration> studentRegistrations;
+
 }
